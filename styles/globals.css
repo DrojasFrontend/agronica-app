@@ -32,7 +32,7 @@ body {
 .logo-text h1 {
 	font-family: "Montserrat", sans-serif;
 	font-size: 24px;
-	font-weight: 700;
+	font-weight: 700; /* Bold */
 	color: #1f2937;
 	margin: 0;
 }
@@ -141,7 +141,7 @@ body {
 .campo-header h2 {
 	font-family: "Montserrat", sans-serif;
 	font-size: 32px;
-	font-weight: 700;
+	font-weight: 700; /* Bold */
 	margin-bottom: 0.5rem;
 }
 
@@ -233,7 +233,7 @@ body {
 .section-header h3 {
 	font-family: "Montserrat", sans-serif;
 	font-size: 24px;
-	font-weight: 600;
+	font-weight: 600; /* SemiBold */
 	color: #1f2937;
 }
 
@@ -300,13 +300,15 @@ body {
 .metric-title h4 {
 	font-family: "Montserrat", sans-serif;
 	font-size: 14px;
-	font-weight: 600;
+	font-weight: 600; /* SemiBold */
 	margin: 0;
 	color: #1f2937;
 }
 
 .metric-title p {
+	font-family: "Roboto", sans-serif;
 	font-size: 12px;
+	font-weight: 400; /* Regular */
 	color: #6b7280;
 	margin: 0;
 }
@@ -333,7 +335,9 @@ body {
 }
 
 .metric-info {
+	font-family: "Roboto", sans-serif;
 	font-size: 13px;
+	font-weight: 400; /* Regular */
 	color: #6b7280;
 	margin-top: 0.5rem;
 }
@@ -365,8 +369,9 @@ body {
 	padding: 0.5rem 1rem;
 	border-radius: 8px;
 	cursor: pointer;
+	font-family: "Roboto", sans-serif;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: 500; /* Medium */
 }
 
 .chart-tab.active {
@@ -435,7 +440,7 @@ body {
 .control-card h4 {
 	font-family: "Montserrat", sans-serif;
 	font-size: 18px;
-	font-weight: 600;
+	font-weight: 600; /* SemiBold */
 	color: #1f2937;
 	margin-bottom: 1.5rem;
 }
@@ -444,7 +449,8 @@ body {
 	padding: 1rem;
 	border: none;
 	border-radius: 10px;
-	font-weight: 600;
+	font-family: "Roboto", sans-serif;
+	font-weight: 500; /* Medium */
 	cursor: pointer;
 	display: flex;
 	align-items: center;

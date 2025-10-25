@@ -17,9 +17,25 @@ Dashboard web para monitoreo y control de sistemas de riego inteligente en agric
 - **Bordes y divisiones**: Gris tenue (#E0E0E0)
 
 ### Tipografía
-- **Títulos y encabezados**: Montserrat Bold
-- **Subtítulos y secciones**: Montserrat SemiBold
-- **Textos y menús**: Roboto Regular / Medium
+- **Títulos y encabezados** (Montserrat Bold - 700):
+  - Logo y título principal
+  - Encabezados de campo
+  - Títulos principales de sección
+
+- **Subtítulos y secciones** (Montserrat SemiBold - 600):
+  - Encabezados de tarjetas métricas
+  - Títulos de secciones
+  - Encabezados de paneles de control
+
+- **Textos y menús** (Roboto):
+  - Textos regulares (Regular - 400):
+    - Descripciones de métricas
+    - Textos informativos
+    - Subtextos
+  - Elementos interactivos (Medium - 500):
+    - Botones
+    - Pestañas
+    - Menús
 
 ### Tarjetas Métricas
 - **Humedad**: Azul corporativo (#6599ad) con fondo rgba(101, 153, 173, 0.15)
