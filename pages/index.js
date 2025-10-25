@@ -71,7 +71,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>KOZ SmartSoil - Plataforma de Riego Inteligente</title>
+        <title>AGRONICA - Plataforma de Riego Inteligente</title>
         <meta name="description" content="Sistema de riego inteligente para agricultura de precisión" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
