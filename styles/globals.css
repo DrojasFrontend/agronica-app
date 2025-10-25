@@ -1,0 +1,621 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI",
+		"Helvetica Neue", Arial, sans-serif;
+	background-color: #F5F7F8;
+	color: #1C2E3E;
+}
+
+/* Header Styles */
+.header {
+	background: #E8EBED;
+	padding: .5rem 2rem;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.logo-section {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
+
+.logo {
+	width: 120px;
+}
+
+.logo-text h1 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 24px;
+	font-weight: 700;
+	color: #1f2937;
+	margin: 0;
+}
+
+.logo-text p {
+	font-size: 14px;
+	color: #6b7280;
+	margin: 0;
+}
+
+.header-right {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.datetime {
+	text-align: center;
+}
+
+.time {
+	font-size: 16px;
+	font-weight: 600;
+	color: #1f2937;
+}
+
+.date {
+	font-size: 13px;
+	color: #6b7280;
+}
+
+.notification-btn {
+	position: relative;
+	background: white;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.notification-badge {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	background: #ef4444;
+	color: white;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+.export-btn {
+	width: 100%;
+	background: #39B54A;
+	color: white;
+	border: none;
+	padding: 0.75rem 1.5rem;
+	border-radius: 10px;
+	font-weight: 600;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	transition: transform 0.2s;
+}
+
+@media (min-width: 992px) {
+	.export-btn {
+		width: auto;
+	}
+
+	.logo-section {
+		justify-content: flex-start;
+	}
+
+	.datetime {
+		text-align: right;
+	}
+}
+
+.export-btn:hover {
+	transform: translateY(-2px);
+}
+
+/* Campo Info Banner */
+.campo-banner {
+	background: linear-gradient(135deg, #059669 0%, #3b82f6 100%);
+	color: white;
+	border-radius: 16px;
+	margin: 2rem auto;
+	max-width: 1400px;
+}
+
+.campo-header {
+	margin-bottom: 1.5rem;
+}
+
+.campo-header h2 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 32px;
+	font-weight: 700;
+	margin-bottom: 0.5rem;
+}
+
+.campo-location {
+	font-size: 16px;
+	opacity: 0.9;
+}
+
+.campo-stats {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 2rem;
+}
+
+.stat-item {
+	text-align: center;
+}
+
+.stat-value {
+	font-size: 36px;
+	font-weight: 700;
+	display: block;
+}
+
+.stat-label {
+	font-size: 14px;
+	opacity: 0.9;
+	margin-top: 0.25rem;
+}
+
+/* Tabs */
+.zone-tabs {
+	display: flex;
+	gap: 1rem;
+	margin: 2rem auto;
+	max-width: 1400px;
+	overflow-x: auto;
+}
+
+.zone-tab {
+	background: white;
+	border: 2px solid #E0E0E0;
+	border-radius: 12px;
+	padding: 1rem 1.5rem;
+	cursor: pointer;
+	transition: all 0.3s;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	white-space: nowrap;
+}
+
+.zone-tab.active {
+	border-color: #10b981;
+	background: #f0fdf4;
+}
+
+.zone-icon {
+	font-size: 24px;
+}
+
+.zone-info h3 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 16px;
+	font-weight: 600;
+	margin: 0;
+	color: #1f2937;
+}
+
+.zone-info p {
+	font-size: 13px;
+	color: #6b7280;
+	margin: 0;
+}
+
+/* Metric Cards */
+.metrics-section {
+	max-width: 1400px;
+	margin: 2rem auto;
+}
+
+.section-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 24px;
+	font-weight: 600;
+	color: #1f2937;
+}
+
+.status-badge {
+	background: #FFC107;
+	color: #1C2E3E;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.metrics-grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.5rem;
+	margin-bottom: 2rem;
+}
+
+.metric-card {
+	background: white;
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.metric-header {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	margin-bottom: 1rem;
+}
+
+.metric-icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 24px;
+}
+
+.metric-icon.blue {
+	background: rgba(101, 153, 173, 0.15);
+	color: #6599ad;
+}
+
+.metric-icon.orange {
+	background: rgba(255, 193, 7, 0.15);
+	color: #FFC107;
+}
+
+.metric-icon.green {
+	background: rgba(57, 181, 74, 0.15);
+	color: #39B54A;
+}
+
+.metric-icon.purple {
+	background: rgba(28, 46, 62, 0.15);
+	color: #1C2E3E;
+}
+
+.metric-title h4 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 14px;
+	font-weight: 600;
+	margin: 0;
+	color: #1f2937;
+}
+
+.metric-title p {
+	font-size: 12px;
+	color: #6b7280;
+	margin: 0;
+}
+
+.metric-value {
+	font-size: 36px;
+	font-weight: 700;
+	color: #1f2937;
+	margin-bottom: 0.5rem;
+}
+
+.metric-progress {
+	height: 8px;
+	background: #e5e7eb;
+	border-radius: 4px;
+	overflow: hidden;
+}
+
+.metric-progress-bar {
+	height: 100%;
+	background: linear-gradient(90deg, #6599ad 0%, #39B54A 100%);
+	border-radius: 4px;
+	transition: width 0.5s;
+}
+
+.metric-info {
+	font-size: 13px;
+	color: #6b7280;
+	margin-top: 0.5rem;
+}
+
+/* Chart Section */
+.chart-section {
+	background: white;
+	border-radius: 12px;
+	padding: 2rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1.5rem;
+}
+
+.chart-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+.chart-tabs {
+	display: flex;
+	gap: 0.5rem;
+}
+
+.chart-tab {
+	background: white;
+	border: 1px solid #e5e7eb;
+	padding: 0.5rem 1rem;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: 500;
+}
+
+.chart-tab.active {
+	background: #10b981;
+	color: white;
+	border-color: #10b981;
+}
+
+.chart-container {
+	height: 300px;
+	margin-bottom: 1rem;
+}
+
+.chart-stats {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid #e5e7eb;
+}
+
+.chart-stat {
+	text-align: center;
+}
+
+.chart-stat-value {
+	font-size: 24px;
+	font-weight: 700;
+	color: #1f2937;
+	display: block;
+}
+
+.chart-stat-label {
+	font-size: 13px;
+	color: #6b7280;
+	margin-top: 0.25rem;
+}
+
+/* Two Column Layout */
+.two-column-layout {
+	display: grid;
+	grid-template-columns: 1fr 380px;
+	gap: 2rem;
+	max-width: 1400px;
+	margin: 0 auto;
+}
+
+.main-column {
+	min-width: 0;
+}
+
+/* Control Panel */
+.control-grid {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.control-card {
+	background: white;
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.control-card h4 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	color: #1f2937;
+	margin-bottom: 1.5rem;
+}
+
+.control-btn {
+	padding: 1rem;
+	border: none;
+	border-radius: 10px;
+	font-weight: 600;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	transition: transform 0.2s;
+	font-size: 14px;
+}
+
+.control-btn:hover {
+	transform: translateY(-2px);
+}
+
+.control-btn.primary {
+	background: #39B54A;
+	color: white;
+}
+
+.control-btn.warning {
+	background: #ea580c;
+	color: white;
+}
+
+.control-btn.secondary {
+	background: #475569;
+	color: white;
+}
+
+.control-btn.outline {
+	background: white;
+	border: 2px solid #e5e7eb;
+	color: #1f2937;
+}
+
+.status-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.status-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.75rem 0;
+	border-bottom: 1px solid #f3f4f6;
+}
+
+.status-item:last-child {
+	border-bottom: none;
+}
+
+.status-label {
+	font-size: 14px;
+	color: #6b7280;
+}
+
+.status-value {
+	font-size: 14px;
+	font-weight: 600;
+	color: #1f2937;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.status-value.success {
+	color: #059669;
+}
+
+/* Summary Card */
+.summary-card {
+	background: linear-gradient(135deg, #059669 0%, #3b82f6 100%);
+	color: white;
+	border-radius: 12px;
+	padding: 1.5rem;
+}
+
+.summary-card h4 {
+	font-family: "Montserrat", sans-serif;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 1.5rem;
+}
+
+.summary-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.summary-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.summary-label {
+	font-size: 14px;
+	opacity: 0.9;
+}
+
+.summary-value {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+/* Schedule Card */
+.schedule-card {
+	background: white;
+	border-radius: 12px;
+	padding: 1.5rem;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+}
+
+.schedule-header h4 {
+	font-size: 16px;
+	font-weight: 700;
+	color: #1f2937;
+	margin: 0;
+}
+
+.schedule-info {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 1.5rem;
+}
+
+.schedule-item p:first-child {
+	font-size: 13px;
+	color: #6b7280;
+	margin-bottom: 0.25rem;
+}
+
+.schedule-item p:last-child {
+	font-size: 16px;
+	font-weight: 600;
+	color: #1f2937;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+	.metrics-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.two-column-layout {
+		grid-template-columns: 1fr;
+	}
+
+	.summary-card {
+		grid-column: span 2;
+	}
+}
+
+@media (max-width: 768px) {
+	.campo-stats {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	.metrics-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.summary-card {
+		grid-column: span 1;
+	}
+}
