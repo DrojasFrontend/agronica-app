@@ -1,9 +1,9 @@
 export default function SensorInputs({ sensors, onSensorChange }) {
   const getDepthLabel = (depth) => {
     switch(depth) {
-      case 30: return '30cm (Superficie)';
-      case 60: return '60cm (Medio)';
-      case 90: return '90cm (Profundo)';
+      case 30: return '30cm';
+      case 60: return '60cm';
+      case 90: return '90cm';
       default: return `${depth}cm`;
     }
   };
