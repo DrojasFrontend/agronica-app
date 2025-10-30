@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Header({ lastUpdate, isLoading }) {
   const getCurrentTime = () => {
     const now = new Date();
@@ -46,10 +48,12 @@ export default function Header({ lastUpdate, isLoading }) {
               <span className="notification-badge">3</span>
             </button>
 
-            <button className="export-btn">
-              📥
-              <span>Exportar datos</span>
-            </button>
+            <Link href="/admin">
+              <button className="export-btn" style={{ textDecoration: 'none' }}>
+                ⚙️
+                <span>Admin</span>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
