@@ -239,7 +239,7 @@ export default function AdminPage() {
                 color: '#6b7280',
                 fontFamily: 'Roboto, sans-serif'
               }}>
-                No hay zonas agregadas. Haz clic en "Agregar Zona" para comenzar.
+                No hay zonas agregadas. Haz clic en &quot;Agregar Zona&quot; para comenzar.
               </div>
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>

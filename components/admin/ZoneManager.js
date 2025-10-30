@@ -172,7 +172,7 @@ export default function ZoneManager({ zone, zoneIndex, onUpdate, onDelete }) {
               background: 'white',
               borderRadius: '8px'
             }}>
-              No hay unidades de muestra. Haz clic en "Agregar UM" para comenzar.
+              No hay unidades de muestra. Haz clic en &quot;Agregar UM&quot; para comenzar.
             </div>
           ) : (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
