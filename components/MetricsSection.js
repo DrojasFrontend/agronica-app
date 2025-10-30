@@ -1,17 +1,17 @@
 import Icon from './Icon';
 
-export default function MetricsSection({ zoneData, selectedDevice }) {
+export default function MetricsSection({ zoneData, selectedUnidadMuestra }) {
   if (!zoneData) return null;
 
   const { name, area, sensors, valves, status, statusColor, statusTextColor, metrics, chartData } = zoneData;
   
-  // Obtener datos del dispositivo seleccionado si existe
-  const deviceData = selectedDevice ? chartData.devices.find(d => d.id === selectedDevice) : null;
+  // Obtener datos de la unidad de muestra seleccionada si existe
+  const unidadMuestraData = selectedUnidadMuestra ? chartData.devices.find(d => d.id === selectedUnidadMuestra) : null;
   
-  // Usar datos del dispositivo si está seleccionado, o datos generales de la zona si no
-  const currentMetrics = deviceData ? {
-    humidity: parseFloat(deviceData.currentHumidity),
-    temperature: parseFloat(deviceData.currentTemperature),
+  // Usar datos de la unidad de muestra si está seleccionada, o datos generales de la zona si no
+  const currentMetrics = unidadMuestraData ? {
+    humidity: parseFloat(unidadMuestraData.currentHumidity),
+    temperature: parseFloat(unidadMuestraData.currentTemperature),
     waterFlow: metrics.waterFlow,
     waterFlowText: metrics.waterFlowText,
     temperatureRange: metrics.temperatureRange,

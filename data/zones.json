@@ -33,7 +33,7 @@
         "devices": [
           {
             "id": "sensor1",
-            "name": "Dispositivo 1",
+            "name": "Unidad de muestra 1",
             "currentHumidity": "38.5%",
             "currentTemperature": "28.9°C",
             "conductivityStatus": "INACTIVO",
@@ -49,7 +49,7 @@
           },
           {
             "id": "sensor2",
-            "name": "Dispositivo 2",
+            "name": "Unidad de muestra 2",
             "currentHumidity": "42.1%",
             "currentTemperature": "27.5°C",
             "conductivityStatus": "ACTIVO",
@@ -126,7 +126,7 @@
         "devices": [
           {
             "id": "sensor1",
-            "name": "Dispositivo 1",
+            "name": "Unidad de muestra 1",
             "currentHumidity": "65.2%",
             "currentTemperature": "24.5°C",
             "conductivityStatus": "NORMAL",
@@ -142,7 +142,7 @@
           },
           {
             "id": "sensor2",
-            "name": "Dispositivo 2",
+            "name": "Unidad de muestra 2",
             "currentHumidity": "64.8%",
             "currentTemperature": "24.3°C",
             "conductivityStatus": "NORMAL",

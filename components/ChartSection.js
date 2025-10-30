@@ -24,31 +24,33 @@ ChartJS.register(
   Filler
 );
 
-export default function ChartSection({ zoneData, onDeviceSelect }) {
+export default function ChartSection({ zoneData, selectedUnidadMuestra }) {
   const [activeMetric, setActiveMetric] = useState('humedad');
   const [activeTimeRange, setActiveTimeRange] = useState('24h');
-  const [selectedDevice, setSelectedDevice] = useState(zoneData?.chartData?.selectedDevice || 'sensor1');
 
   if (!zoneData) return null;
+
+  // Usar la primera unidad de muestra si no hay una seleccionada
+  const currentUnidadMuestra = selectedUnidadMuestra || zoneData.chartData?.devices?.[0]?.id;
 
   // Datos dinámicos por zona
   const generateChartData = () => {
     let data = [];
     let labels = [];
     
-    // Obtener el dispositivo seleccionado
-    const selectedDeviceData = zoneData.chartData.devices.find(d => d.id === selectedDevice);
-    if (!selectedDeviceData) return { labels: [], datasets: [] };
+    // Obtener la unidad de muestra seleccionada
+    const selectedUnidadMuestraData = zoneData.chartData.devices.find(d => d.id === currentUnidadMuestra);
+    if (!selectedUnidadMuestraData) return { labels: [], datasets: [] };
     
     // Obtener datos según el rango de tiempo seleccionado
     if (activeTimeRange === '24h') {
       // Últimas 24 horas
       if (activeMetric === 'humedad') {
-        data = selectedDeviceData.humidityData30 || [];
+        data = selectedUnidadMuestraData.humidityData30 || [];
       } else if (activeMetric === 'temperatura') {
-        data = selectedDeviceData.temperatureData30 || [];
+        data = selectedUnidadMuestraData.temperatureData30 || [];
       } else {
-        data = selectedDeviceData.conductivityData30 || [];
+        data = selectedUnidadMuestraData.conductivityData30 || [];
       }
       
       // Generar labels de tiempo por hora
@@ -60,7 +62,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
       }
     } else if (activeTimeRange === '7d') {
       // Últimos 7 días
-      const weekData = zoneData.chartDataWeek.devices.find(d => d.id === selectedDevice);
+      const weekData = zoneData.chartDataWeek.devices.find(d => d.id === currentUnidadMuestra);
       if (activeMetric === 'humedad') {
         data = weekData?.humidityData || [];
       } else if (activeMetric === 'temperatura') {
@@ -78,7 +80,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
       }
     } else if (activeTimeRange === '30d') {
       // Últimos 30 días
-      const monthData = zoneData.chartDataMonth.devices.find(d => d.id === selectedDevice);
+      const monthData = zoneData.chartDataMonth.devices.find(d => d.id === selectedUnidadMuestra);
       if (activeMetric === 'humedad') {
         data = monthData?.humidityData || [];
       } else if (activeMetric === 'temperatura') {
@@ -101,7 +103,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
       datasets: activeMetric === 'humedad' ? [
         {
           label: 'Humedad 30cm',
-          data: (selectedDeviceData.humidityData30 || []).map(value => value + 40),
+          data: (selectedUnidadMuestraData.humidityData30 || []).map(value => value + 40),
           fill: false,
           borderColor: '#3B82F6', // Azul - 30cm
           borderWidth: 3,
@@ -111,7 +113,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
         },
         {
           label: 'Humedad 60cm',
-          data: (selectedDeviceData.humidityData60 || []).map(value => value + 20),
+          data: (selectedUnidadMuestraData.humidityData60 || []).map(value => value + 20),
           fill: false,
           borderColor: '#EF4444', // Rojo - 60cm
           borderWidth: 3,
@@ -121,7 +123,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
         },
         {
           label: 'Humedad 90cm',
-          data: selectedDeviceData.humidityData90 || [],
+          data: selectedUnidadMuestraData.humidityData90 || [],
           fill: false,
           borderColor: '#10B981', // Verde - 90cm
           borderWidth: 3,
@@ -132,7 +134,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
       ] : activeMetric === 'temperatura' ? [
         {
           label: 'Temperatura 30cm (°C)',
-          data: (selectedDeviceData.temperatureData30 || []).map(value => value + 40),
+          data: (selectedUnidadMuestraData.temperatureData30 || []).map(value => value + 40),
           fill: false,
           borderColor: '#3B82F6', // Azul - 30cm
           borderWidth: 3,
@@ -142,7 +144,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
         },
         {
           label: 'Temperatura 60cm (°C)',
-          data: (selectedDeviceData.temperatureData60 || []).map(value => value + 20),
+          data: (selectedUnidadMuestraData.temperatureData60 || []).map(value => value + 20),
           fill: false,
           borderColor: '#EF4444', // Rojo - 60cm
           borderWidth: 3,
@@ -152,7 +154,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
         },
         {
           label: 'Temperatura 90cm (°C)',
-          data: selectedDeviceData.temperatureData90 || [],
+          data: selectedUnidadMuestraData.temperatureData90 || [],
           fill: false,
           borderColor: '#10B981', // Verde - 90cm
           borderWidth: 3,
@@ -163,7 +165,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
       ] : [
         {
           label: 'Conductividad 30cm',
-          data: (selectedDeviceData.conductivityData30 || []).map(value => value + 40),
+          data: (selectedUnidadMuestraData.conductivityData30 || []).map(value => value + 40),
           fill: false,
           borderColor: '#3B82F6', // Azul - 30cm
           borderWidth: 3,
@@ -173,7 +175,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
         },
         {
           label: 'Conductividad 60cm',
-          data: (selectedDeviceData.conductivityData60 || []).map(value => value + 20),
+          data: (selectedUnidadMuestraData.conductivityData60 || []).map(value => value + 20),
           fill: false,
           borderColor: '#EF4444', // Rojo - 60cm
           borderWidth: 3,
@@ -183,7 +185,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
         },
         {
           label: 'Conductividad 90cm',
-          data: selectedDeviceData.conductivityData90 || [],
+          data: selectedUnidadMuestraData.conductivityData90 || [],
           fill: false,
           borderColor: '#10B981', // Verde - 90cm
           borderWidth: 3,
@@ -273,15 +275,15 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
   };
 
   const getCurrentValues = () => {
-    const selectedDeviceData = zoneData.chartData.devices.find(d => d.id === selectedDevice);
-    if (!selectedDeviceData) return ['N/A'];
+    const selectedUnidadMuestraData = zoneData.chartData.devices.find(d => d.id === currentUnidadMuestra);
+    if (!selectedUnidadMuestraData) return ['N/A'];
 
     if (activeMetric === 'humedad') {
-      return [selectedDeviceData.currentHumidity];
+      return [selectedUnidadMuestraData.currentHumidity];
     } else if (activeMetric === 'temperatura') {
-      return [selectedDeviceData.currentTemperature];
+      return [selectedUnidadMuestraData.currentTemperature];
     } else {
-      return [selectedDeviceData.conductivityStatus];
+      return [selectedUnidadMuestraData.conductivityStatus];
     }
   };
 
@@ -295,25 +297,6 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
             <h3>Datos Históricos</h3>
             <div className="d-flex flex-column gap-2">
               <div className="d-flex gap-2" style={{ marginTop: '0.5rem' }}>
-                {zoneData.chartData.devices.map(device => (
-                  <button
-                    key={device.id}
-                    className={`chart-tab ${selectedDevice === device.id ? 'active' : ''}`}
-                    onClick={() => {
-                      setSelectedDevice(device.id);
-                      onDeviceSelect?.(device.id);
-                    }}
-                    style={{
-                      backgroundColor: selectedDevice === device.id ? '#3B82F6' : 'transparent',
-                      color: selectedDevice === device.id ? 'white' : '#6b7280',
-                      border: `1px solid ${selectedDevice === device.id ? '#3B82F6' : '#e5e7eb'}`
-                    }}
-                  >
-                    {device.name}
-                  </button>
-                ))}
-              </div>
-              <div className="d-flex gap-2">
                 <button
                   className={`chart-tab ${activeTimeRange === '24h' ? 'active' : ''}`}
                   onClick={() => setActiveTimeRange('24h')}
@@ -372,13 +355,13 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
 
         <div className="chart-stats" style={{ display: 'flex', justifyContent: 'space-between', padding: '1rem 2rem' }}>
           {(() => {
-            const selectedDeviceData = zoneData.chartData.devices.find(d => d.id === selectedDevice);
-            return selectedDeviceData ? (
+            const selectedUnidadMuestraData = zoneData.chartData.devices.find(d => d.id === currentUnidadMuestra);
+            return selectedUnidadMuestraData ? (
               <>
                 <div className="chart-stat" style={{ textAlign: 'center' }}>
                   <div style={{ marginBottom: '0.5rem' }}>
                     <span className="chart-stat-value" style={{ color: '#6b7280', fontSize: '1.2rem' }}>
-                      {selectedDeviceData.currentHumidity}
+                      {selectedUnidadMuestraData.currentHumidity}
                     </span>
                   </div>
                   <span className="chart-stat-label" style={{ color: '#6b7280' }}>Humedad Actual</span>
@@ -386,7 +369,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
                 <div className="chart-stat" style={{ textAlign: 'center' }}>
                   <div style={{ marginBottom: '0.5rem' }}>
                     <span className="chart-stat-value" style={{ color: '#6b7280', fontSize: '1.2rem' }}>
-                      {selectedDeviceData.currentTemperature}
+                      {selectedUnidadMuestraData.currentTemperature}
                     </span>
                   </div>
                   <span className="chart-stat-label" style={{ color: '#6b7280' }}>Temperatura</span>
@@ -394,7 +377,7 @@ export default function ChartSection({ zoneData, onDeviceSelect }) {
                 <div className="chart-stat" style={{ textAlign: 'center' }}>
                   <div style={{ marginBottom: '0.5rem' }}>
                     <span className="chart-stat-value" style={{ color: '#6b7280', fontSize: '1.2rem' }}>
-                      {selectedDeviceData.conductivityStatus}
+                      {selectedUnidadMuestraData.conductivityStatus}
                     </span>
                   </div>
                   <span className="chart-stat-label" style={{ color: '#6b7280' }}>Estado Riego</span>
