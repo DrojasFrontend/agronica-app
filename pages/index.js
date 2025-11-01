@@ -7,18 +7,20 @@ import UnidadMuestraTabs from '../components/UnidadMuestraTabs';
 import MetricsSection from '../components/MetricsSection';
 import ChartSection from '../components/ChartSection';
 import ControlPanel from '../components/ControlPanel';
+import { useRouter } from 'next/router';
 import fallbackData from '../data/zones.json';
 
 // Configuración de fuentes de datos
 // Para cambiar entre API y datos locales, comenta/descomenta las siguientes líneas:
 
 // Opción 1: Usar API externa
-// const API_URL = 'https://n8n-fastmvp-u38739.vm.elestio.app/webhook/data';
+const API_BASE_URL = 'https://n8n-fastmvp-u38739.vm.elestio.app/webhook/data';
 
 // Opción 2: Usar datos locales (descomentar esta línea y comentar la de arriba)
-const API_URL = '/api/local-data';
+// const API_BASE_URL = '/api/local-data';
 
 export default function Home() {
+  const router = useRouter();
   const [activeZone, setActiveZone] = useState(0);
   const [selectedUnidadMuestra, setSelectedUnidadMuestra] = useState(null);
   const [zonesData, setZonesData] = useState(fallbackData);
@@ -35,7 +37,17 @@ export default function Home() {
   const fetchData = async () => {
     try {
       setError(null);
-      const response = await fetch(API_URL);
+      
+      // Obtener el parámetro 'cliente' de la URL
+      const { cliente } = router.query;
+      
+      // Construir URL con parámetro si existe
+      let apiUrl = API_BASE_URL;
+      if (cliente) {
+        apiUrl = `${API_BASE_URL}?cliente=${cliente}`;
+      }
+      
+      const response = await fetch(apiUrl);
       
       if (!response.ok) {
         throw new Error('Error al obtener datos del servidor');
@@ -58,15 +70,18 @@ export default function Home() {
     }
   };
 
-  // Cargar datos al montar el componente
+  // Cargar datos al montar el componente y cuando cambie el parámetro cliente
   useEffect(() => {
-    fetchData();
-    
-    // Actualizar cada 30 segundos
-    const interval = setInterval(fetchData, 30000);
-    
-    return () => clearInterval(interval);
-  }, []);
+    // Solo ejecutar cuando router.query esté listo
+    if (router.isReady) {
+      fetchData();
+      
+      // Actualizar cada 30 segundos
+      const interval = setInterval(fetchData, 30000);
+      
+      return () => clearInterval(interval);
+    }
+  }, [router.isReady, router.query.cliente]);
 
   // Seleccionar automáticamente la primera unidad de muestra al cargar
   useEffect(() => {
@@ -116,6 +131,28 @@ export default function Home() {
               color: '#991b1b'
             }}>
               ⚠️ {error} - Mostrando datos de respaldo
+            </div>
+          )}
+
+          {/* Indicador de cliente activo */}
+          {router.query.cliente && (
+            <div style={{
+              background: '#d1fae5',
+              border: '2px solid #39B54A',
+              borderRadius: '8px',
+              padding: '0.75rem 1rem',
+              margin: '1rem auto',
+              maxWidth: '1400px',
+              color: '#065f46',
+              fontFamily: 'Roboto, sans-serif',
+              fontSize: '14px',
+              fontWeight: 500,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <span style={{ fontSize: '18px' }}>👤</span>
+              <span>Visualizando datos del cliente: <strong>{router.query.cliente}</strong></span>
             </div>
           )}
           
