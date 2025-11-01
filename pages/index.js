@@ -13,11 +13,11 @@ import fallbackData from '../data/zones.json';
 // Configuración de fuentes de datos
 // Para cambiar entre API y datos locales, comenta/descomenta las siguientes líneas:
 
-// Opción 1: Usar API externa
-const API_BASE_URL = 'https://n8n-fastmvp-u38739.vm.elestio.app/webhook/data';
+// Opción 1: Usar API externa (descomentar cuando Gonzalo tenga el endpoint listo)
+// const API_BASE_URL = 'https://n8n-fastmvp-u38739.vm.elestio.app/webhook/data';
 
-// Opción 2: Usar datos locales (descomentar esta línea y comentar la de arriba)
-// const API_BASE_URL = '/api/local-data';
+// Opción 2: Usar datos locales (ACTIVO PARA PRUEBAS)
+const API_BASE_URL = '/api/local-data';
 
 export default function Home() {
   const router = useRouter();
