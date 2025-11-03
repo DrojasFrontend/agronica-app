@@ -15,7 +15,12 @@ export default function AdminPage() {
 
   // Generar URL automáticamente
   const generateURL = (name) => {
-    return `https://agronica.cl/${name.toLowerCase().replace(/ /g, '_')}`;
+    const slug = name.toLowerCase().replace(/ /g, '_');
+    // Usar el dominio real de Netlify o el dominio de producción
+    const baseURL = typeof window !== 'undefined' 
+      ? window.location.origin 
+      : 'https://agronica-app.netlify.app';
+    return `${baseURL}?cliente=${slug}`;
   };
 
   // Agregar nueva zona
