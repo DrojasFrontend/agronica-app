@@ -127,7 +127,7 @@ body {
 
 /* Campo Info Banner */
 .campo-banner {
-	background: linear-gradient(135deg, #059669 0%, #3b82f6 100%);
+	background: #6599ad;
 	color: white;
 	border-radius: 16px;
 	margin: 2rem auto;
@@ -329,7 +329,7 @@ body {
 
 .metric-progress-bar {
 	height: 100%;
-	background: linear-gradient(90deg, #6599ad 0%, #39B54A 100%);
+	background: #39B54A;
 	border-radius: 4px;
 	transition: width 0.5s;
 }
@@ -522,7 +522,7 @@ body {
 
 /* Summary Card */
 .summary-card {
-	background: linear-gradient(135deg, #059669 0%, #3b82f6 100%);
+	background: #6599ad;
 	color: white;
 	border-radius: 12px;
 	padding: 1.5rem;
