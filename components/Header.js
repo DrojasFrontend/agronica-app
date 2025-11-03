@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Header({ lastUpdate, isLoading }) {
+  const router = useRouter();
   const getCurrentTime = () => {
     const now = new Date();
     return now.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' });
@@ -48,12 +50,14 @@ export default function Header({ lastUpdate, isLoading }) {
               <span className="notification-badge">3</span>
             </button>
 
-            <Link href="/admin">
-              <button className="export-btn" style={{ textDecoration: 'none' }}>
-                ⚙️
-                <span>Admin</span>
-              </button>
-            </Link>
+            {!router.query.cliente && (
+              <Link href="/admin">
+                <button className="export-btn" style={{ textDecoration: 'none' }}>
+                  ⚙️
+                  <span>Admin</span>
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>

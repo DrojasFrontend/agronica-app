@@ -3,8 +3,10 @@ import Head from 'next/head';
 import ClientForm from '../../components/admin/ClientForm';
 import ZoneManager from '../../components/admin/ZoneManager';
 import JSONPreview from '../../components/admin/JSONPreview';
+import PinLock from '../../components/admin/PinLock';
 
 export default function AdminPage() {
+  const [isUnlocked, setIsUnlocked] = useState(false);
   const [clientName, setClientName] = useState('');
   const [zones, setZones] = useState([]);
   const [showPreview, setShowPreview] = useState(false);
@@ -130,6 +132,19 @@ export default function AdminPage() {
     setZones([]);
     setSaveStatus(null);
   };
+
+  // Mostrar PIN Lock si no está desbloqueado
+  if (!isUnlocked) {
+    return (
+      <>
+        <Head>
+          <title>Administración - AGRONICA</title>
+          <meta name="description" content="Panel de administración AGRONICA" />
+        </Head>
+        <PinLock onUnlock={() => setIsUnlocked(true)} />
+      </>
+    );
+  }
 
   return (
     <>
