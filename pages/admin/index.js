@@ -20,7 +20,7 @@ export default function AdminPage() {
     const baseURL = typeof window !== 'undefined' 
       ? window.location.origin 
       : 'https://agronica-app.netlify.app';
-    return `${baseURL}?cliente=${slug}`;
+    return `${baseURL}/${slug}`;
   };
 
   // Agregar nueva zona
